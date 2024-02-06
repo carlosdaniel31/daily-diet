@@ -1,16 +1,17 @@
 import styled from "styled-components/native";
 import { MaterialIcons } from '@expo/vector-icons'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
-type TypeStyleIconDietProps = 'within' | 'outside' 
+export type TypeStyleIconDietProps = 'within' | 'outside' 
 
 type Props = {
   type: TypeStyleIconDietProps
 }
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
   flex: 1;
   background: white;
-  padding: 60px 24px 0;
+  padding: 24px;
 `
 export const ContainerPercentage = styled.TouchableOpacity`
   width: 100%;
