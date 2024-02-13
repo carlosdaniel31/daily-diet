@@ -1,5 +1,6 @@
 import { StatusBar } from 'react-native';
 import { Home } from './src/screens/Home';
+import { NewMeal } from './src/screens/NewMeal'
 import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold } from '@expo-google-fonts/nunito-sans';
 import { Loading } from './src/components/Loading';
 import { ThemeProvider } from 'styled-components/native';
@@ -16,7 +17,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      {fontsLoaded ? <Details /> : <Loading />}
+      {fontsLoaded ? <NewMeal /> : <Loading />}
     </ThemeProvider>
   );
 }

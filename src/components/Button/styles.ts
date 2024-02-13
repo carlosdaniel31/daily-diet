@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
+import { TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(TouchableOpacity)`
   flex: 1;
   flex-direction: row;
   min-height: 56px;
