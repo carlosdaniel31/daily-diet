@@ -15,7 +15,6 @@ export const Container = styled(Pressable)<ButtonTypeDietProps>`
   flex: 1;
   max-height: 56px;
   min-height: 56px;
-  /* background: ${({theme})=> theme.COLORS.GRAY_400}; */
   background: ${({theme, isActive, background})=> 
     isActive ? theme.COLORS[background] : theme.COLORS.GRAY_400};
   border: 1px solid ${({theme, isActive, color})=> 

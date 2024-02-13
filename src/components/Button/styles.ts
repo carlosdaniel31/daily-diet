@@ -11,6 +11,7 @@ export const Container = styled(TouchableOpacity)`
   background: ${({theme})=> theme.COLORS.GRAY_800};
   justify-content: center;
   align-items: center;
+  padding: 0 24px;
   gap: 12px;
 `
 export const Title = styled.Text`
