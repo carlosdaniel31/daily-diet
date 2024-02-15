@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Button } from "../../components/Button";
 import { ButtonTypeDiet } from "../../components/ButtonTypeDiet";
 import { Input } from "../../components/Input";
-import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Icon, Label, TextArea, Title } from "./styles";
+import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Label, TextArea } from "./styles";
+import { Highlight } from "../../components/Highlight";
 
 export function NewMeal(){
   const [buttonSelected, setButtonSelected] = useState('')
 
   return (
     <Container>
-      <Icon 
-        name='arrow-back'
+      <Highlight 
+        title="Nova refeição"
       />
-      <Title>Nova refeição</Title>
       <Form contentContainerStyle={[
         {paddingBottom: 100}
       ]}>

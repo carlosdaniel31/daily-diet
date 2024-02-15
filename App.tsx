@@ -8,6 +8,7 @@ import theme from './src/theme';
 import { Details } from './src/screens/Details';
 import { FeedbackWithinDiet } from './src/screens/FeedbackWithinDiet'
 import { FeedbackOffDiet } from './src/screens/FeedbackOffDiet'
+import { DetailsMeal } from './src/screens/DetailsMeal'
 
 export default function App() {
   const [fontsLoaded] = useFonts({NunitoSans_400Regular, NunitoSans_700Bold});
@@ -19,8 +20,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      {fontsLoaded ? <FeedbackWithinDiet /> : <Loading />}
+      {fontsLoaded ? <NewMeal /> : <Loading />}
     </ThemeProvider>
   );
 }
-

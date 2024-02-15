@@ -66,6 +66,7 @@ export function Home(){
       <Button 
         title='Nova refeição'
         hasIcon
+        icon="add"
       />
       <SectionList showsVerticalScrollIndicator={false}
         sections={DATA}
