@@ -10,7 +10,6 @@ export const ContainerDetails = styled.View`
   flex: 1;
   border-radius: 20px;
   background: ${({ theme }) => theme.COLORS.GRAY_300};
-  /* background-color: aqua; */
   position: fixed;
   top: 32px;
   padding: 33px 24px;
