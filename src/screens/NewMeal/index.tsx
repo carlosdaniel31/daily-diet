@@ -4,14 +4,26 @@ import { ButtonTypeDiet } from "../../components/ButtonTypeDiet";
 import { Input } from "../../components/Input";
 import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Label, TextArea } from "./styles";
 import { Highlight } from "../../components/Highlight";
+import { useNavigation } from "@react-navigation/native";
 
 export function NewMeal(){
   const [buttonSelected, setButtonSelected] = useState('')
+
+  const navigation = useNavigation()
+
+  function goBack(){
+    navigation.navigate('home')
+  }
+
+  function handleNewMeal(){
+    navigation.navigate('feedback_within_diet')
+  }
 
   return (
     <Container>
       <Highlight 
         title="Nova refeição"
+        goBack={goBack}
       />
       <Form contentContainerStyle={[
         {paddingBottom: 100}
@@ -54,6 +66,7 @@ export function NewMeal(){
         </ContainerButtonTypeDiet>
         <Button style={{marginTop: 124}}
           title="Cadastrar refeição"
+          onPress={handleNewMeal}
         />
       </Form>
     </Container>

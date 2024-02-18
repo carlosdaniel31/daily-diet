@@ -2,13 +2,14 @@ import { Bar, Container, ContainerItem, ContainerPercentage, CreatedAd, HeaderSe
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { SectionList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const DATA = [
   {
     title: '12.01.2024',
     data: [
       {
-      hora: '20:00',
+      hora: '20:01',
       item: 'Cerveja',
       type: 'outside'
       },
@@ -52,10 +53,20 @@ const DATA = [
 ]
 
 export function Home(){
+  const navigation = useNavigation()
+  
+  function handleNewMeal(){
+    navigation.navigate('new_meal')
+  }
+
+  function handleDetailsDiet(){
+    navigation.navigate('details_diet')
+  }
+
   return (
     <Container>
       <Header />
-      <ContainerPercentage>
+      <ContainerPercentage onPress={handleDetailsDiet}>
         <Icon 
           name="call-made"
         />
@@ -67,27 +78,30 @@ export function Home(){
         title='Nova refeição'
         hasIcon
         icon="add"
+        onPress={handleNewMeal}
       />
-      <SectionList showsVerticalScrollIndicator={false}
+      <SectionList 
         sections={DATA}
-        keyExtractor={(item) => item.hora}
+        keyExtractor={(item) => item.item}
+        stickySectionHeadersEnabled={false}
         renderItem={({item}) => (
           <Section>
-            <ContainerItem>
+          <ContainerItem>
               <CreatedAd>{item.hora}</CreatedAd>
               <Bar>|</Bar>
               <Item>{item.item}</Item>
               <Type 
                 name='circle'
                 type={item.type}
-              />
+                />
             </ContainerItem>
           </Section>
+          )}
+        showsVerticalScrollIndicator={false}
+        renderSectionHeader={({section})=>(
+          <HeaderSection>{section.title}</HeaderSection>
         )}
-        renderSectionHeader={({section: {title}})=>(
-          <HeaderSection>{title}</HeaderSection>
-        )}
-      />
+      />   
     </Container>
   )
 }

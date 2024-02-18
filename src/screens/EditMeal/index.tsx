@@ -5,7 +5,7 @@ import { Input } from "../../components/Input";
 import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Label, TextArea } from "./styles";
 import { Highlight } from "../../components/Highlight";
 
-export function NewMeal(){
+export function EditMeal(){
   const [buttonSelected, setButtonSelected] = useState('')
 
   return (

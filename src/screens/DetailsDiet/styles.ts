@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native"
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -8,13 +9,15 @@ export const Container = styled(SafeAreaView)`
   padding: 48px 0 0 0;
   position: relative;
 `
+export const ContainerIcon = styled(TouchableOpacity)`
+  position: absolute;
+  left: 24px;
+  top: 52px;
+`
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
   size: 24,
   color: theme.COLORS.GREEN_700,
 }))`
-  position: absolute;
-  left: 24px;
-  top: 52px;
 `
 export const Percentage = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.FULL}px;

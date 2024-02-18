@@ -1,13 +1,24 @@
+import { useNavigation } from "@react-navigation/native";
 import { ContainerDiet } from "../../components/ContainerDiet";
 import { ContainerInfoDiet } from "../../components/ContainerInfoDiet";
-import { Box, Container, ContainerInfo, Icon, InfoPercentage, Percentage, Title } from "./styles";
+import { Box, Container, ContainerIcon, ContainerInfo, Icon, InfoPercentage, Percentage, Title } from "./styles";
 
-export function Details(){
+export function DetailsDiet(){
+  const navigation = useNavigation()
+
+  function goBack(){
+    navigation.navigate('home')
+  }
+
   return (
     <Container>
-      <Icon 
-        name='arrow-back'
-      />
+      <ContainerIcon
+        onPress={goBack}
+      >
+        <Icon 
+          name='arrow-back'
+        />
+      </ContainerIcon>
       <Percentage>90,86%</Percentage>
       <InfoPercentage>das refeições dentro da dieta</InfoPercentage>
       <ContainerInfo>

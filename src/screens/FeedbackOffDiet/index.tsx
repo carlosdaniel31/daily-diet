@@ -3,8 +3,15 @@ import { Container, Image } from "./styles";
 import ImageFeedbackOffDiet from '../../assets/image-feedback-off-diet.png'
 import { Button } from "../../components/Button";
 import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export function FeedbackOffDiet(){
+  const navigation = useNavigation()
+
+  function goBack(){
+    navigation.navigate('home')
+  }
+
   return (
     <Container>
       <HeaderFeedback 
@@ -17,6 +24,7 @@ export function FeedbackOffDiet(){
       />
       <Button 
         title="Ir para a página inicial"
+        onPress={goBack}
       />
     </Container>
   )
