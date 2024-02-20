@@ -2,8 +2,12 @@ import { Bar, Container, ContainerItem, ContainerPercentage, CreatedAd, HeaderSe
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { FlatList, SectionList } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Platform } from "react-native";
+import { useCallback, useState } from "react";
+import { mealsGetAll } from "../../storage/meal/mealsGetAll";
+import { MealDTO } from "../../dtos/MealDTO";
+import { ListEmpty } from "../../components/ListEmpty";
 
 const DATAL = [
   {
@@ -101,6 +105,9 @@ const DATA = [
 ]
 
 export function Home(){
+  const [isLoading, setIsLoading] = useState(false)
+  const [meals, setMeals] = useState<MealDTO[]>([])
+
   const navigation = useNavigation()
   
   function handleNewMeal(){
@@ -114,6 +121,22 @@ export function Home(){
   function handleDetailsMeal(){
     navigation.navigate('details_meal')
   }
+
+  async function fetchMeals(){
+    try {
+      setIsLoading(true);
+      const data = await mealsGetAll()
+      setMeals(data)
+    } catch (error) {
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useFocusEffect(useCallback(()=>{
+    fetchMeals()
+  }, []))
 
   return (
     <Container>
@@ -153,11 +176,11 @@ export function Home(){
         )}
       />    */}
       <FlatList 
-        data={DATA}
+        data={meals}
         keyExtractor={item => item.item}
         renderItem={({item})=> (
           <ContainerItem onPress={handleDetailsMeal}>
-            <CreatedAd>{item.hora}</CreatedAd>
+            <CreatedAd>{item.hour}</CreatedAd>
               <Bar>|</Bar>
               <Item>{item.item}</Item>
               <Type 
@@ -167,7 +190,13 @@ export function Home(){
           </ContainerItem>
 
         )}
-        contentContainerStyle={{marginTop: 32, paddingBottom: Platform.OS === 'ios' ? 20 : 80}}
+        contentContainerStyle={
+          meals.length ? { marginTop: 32, paddingBottom: Platform.OS === 'ios' ? 20 : 80} : {flex: 1}}
+        ListEmptyComponent={()=>(
+          <ListEmpty 
+            message="Nenhuma refeição adicionada a sua dieta ainda."
+          />
+        )}
         showsVerticalScrollIndicator={false}
       />
     </Container>
