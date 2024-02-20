@@ -4,14 +4,18 @@ import { ButtonTypeDiet } from "../../components/ButtonTypeDiet";
 import { Input } from "../../components/Input";
 import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Label, TextArea } from "./styles";
 import { Highlight } from "../../components/Highlight";
+import { useNavigation } from "@react-navigation/native";
 
 export function EditMeal(){
   const [buttonSelected, setButtonSelected] = useState('')
+
+  const navigation = useNavigation()
 
   return (
     <Container>
       <Highlight 
         title="Editar refeição"
+        goBack={navigation.goBack}
       />
       <Form contentContainerStyle={[
         {paddingBottom: 100}

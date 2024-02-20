@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { MaterialIcons } from '@expo/vector-icons'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ScrollView, TouchableOpacity } from 'react-native'
 
 export type TypeStyleIconDietProps = 'within' | 'outside' 
 
@@ -11,7 +12,8 @@ type Props = {
 export const Container = styled(SafeAreaView)`
   flex: 1;
   background: white;
-  padding: 24px;
+  padding: 24px 24px 0;
+  /* box-shadow: inset 0px -34px 18px -3px rgba(0,0,0,0.1); */
 `
 export const ContainerPercentage = styled.TouchableOpacity`
   width: 100%;
@@ -43,10 +45,11 @@ export const Title = styled.Text`
   font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};
   margin-bottom: 8px;
 `
-export const Section = styled.View`
+export const ListMeal = styled(ScrollView)`
   flex: 1;
+  margin-top: 32px;
 `
-export const ContainerItem = styled.View`
+export const ContainerItem = styled(TouchableOpacity)`
   flex: 1;
   max-height: 56px;
   min-height: 56px;
