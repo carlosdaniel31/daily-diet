@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { TextInput, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -19,26 +19,14 @@ export const Label = styled.Text`
   font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
   color: ${({ theme })=> theme.COLORS.GRAY_800};
   margin-bottom: 4px;
-`
-export const TextArea = styled(TextInput)`
-  flex: 1;
-  min-height: 56px;
-  max-height: 90px;
-  background: transparent;
-  color: ${({theme})=> theme.COLORS.GRAY_900};
-  font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};
-  font-size: ${({theme})=> theme.FONT_SIZE.MD}px;
-  border: 1px solid ${({theme})=> theme.COLORS.GRAY_500};
-  border-radius: 6px;
-  padding: 14px;
-  margin-bottom: 24px;
+  margin-top: 24px;
 `
 export const ContainerDateHour = styled.View`
+  flex: 1;
   width: 100%;
   min-height: 84px;
   flex-direction: row;
   gap: 20px;
-  margin-bottom: 24px;
 `
 export const Box = styled.View`
   flex: 1;

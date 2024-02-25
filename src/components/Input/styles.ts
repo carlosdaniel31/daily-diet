@@ -12,5 +12,9 @@ export const Container = styled(TextInput)`
   border: 1px solid ${({theme})=> theme.COLORS.GRAY_500};
   border-radius: 6px;
   padding: 14px;
-  margin-bottom: 24px;
+  `
+export const Message = styled.Text`
+  color: ${({theme})=> theme.COLORS.RED_700};
+  font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};
+  font-size: ${({theme})=> theme.FONT_SIZE.SM}px;
 `

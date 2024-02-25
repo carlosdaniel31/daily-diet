@@ -1,7 +1,7 @@
-import { TypeStyleIconDietProps } from "../screens/Home/styles"
-
 export type MealDTO = {
+  date: string
   hour: string
   item: string
-  type: TypeStyleIconDietProps
+  description: string
+  type: string
 }
