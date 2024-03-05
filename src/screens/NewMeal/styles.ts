@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { ScrollView } from 'react-native'
+import { ScrollView, TouchableOpacity } from 'react-native'
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -36,4 +36,18 @@ export const ContainerButtonTypeDiet = styled.View`
   width: 100%;
   flex-direction: row;
   gap: 8px;
+`
+export const ContainerButtonDateHour = styled(TouchableOpacity)`
+  flex: 1;
+  min-height: 56px;
+  max-height: 56px;
+  background: transparent;
+  border: 1px solid ${({theme})=> theme.COLORS.GRAY_500};
+  border-radius: 6px;
+  padding: 14px;
+  `
+export const Text = styled.Text`
+  color: ${({theme})=> theme.COLORS.GRAY_900};
+  font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};
+  font-size: ${({theme})=> theme.FONT_SIZE.MD}px;
 `
