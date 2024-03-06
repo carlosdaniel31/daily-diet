@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as zod from 'zod'
 import { format } from 'date-fns'
+import { v4 as uuidv4 } from 'uuid'
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Label } from "./styles";
 import { Button } from "../../components/Button";
@@ -15,8 +16,9 @@ import { Alert } from "react-native";
 import { ButtonDateTimer } from "../../components/ButtonDateTimer";
 
 const newMealSchema = zod.object({
-  date: zod.string().min(1, 'Informe uma data'),
-  hour: zod.string().min(1, 'Informe a hora da refeição'),
+  // id: zod.string(),
+  date: zod.string().min(1),
+  hour: zod.string().min(1),
   item: zod.string().min(1, 'A refeição deve ser informada'),
   description: zod.string().min(1, 'Descreva sua refeição'),
   type: zod.string()

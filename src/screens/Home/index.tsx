@@ -118,8 +118,8 @@ export function Home(){
     navigation.navigate('details_diet')
   }
 
-  function handleDetailsMeal(){
-    navigation.navigate('details_meal')
+  function handleDetailsMeal(meal: MealDTO){
+    navigation.navigate('details_meal', {meal})
   }
 
   async function fetchMeals(){
@@ -177,9 +177,9 @@ export function Home(){
       />    */}
       <FlatList 
         data={meals}
-        keyExtractor={item => item.item}
+        keyExtractor={item => item.description}
         renderItem={({item})=> (
-          <ContainerItem onPress={handleDetailsMeal}>
+          <ContainerItem onPress={()=>handleDetailsMeal(item)}>
             <CreatedAd>{item.hour}</CreatedAd>
               <Bar>|</Bar>
               <Item>{item.item}</Item>

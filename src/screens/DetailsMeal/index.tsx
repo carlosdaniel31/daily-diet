@@ -1,14 +1,22 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Button } from "../../components/Button";
 import { DeleteMealCard } from "../../components/DeleteMealCard";
 import { Highlight } from "../../components/Highlight";
 import { Container, ContainerButtons, ContainerDetails, ContainerStateDiet, DateTime, Description, Dot,LabelDateTime, Meal, TextStateDiet } from "./styles";
 import { useState } from "react";
+import { MealDTO } from "../../dtos/MealDTO";
+
+type RouteParams = {
+  meal: MealDTO
+}
 
 export function DetailsMeal() {
   const [isActive, setIsActive] = useState(false)
 
   const navigation = useNavigation()
+  const route = useRoute()
+
+  const { meal } = route.params as RouteParams
 
   function goBack(){
     navigation.navigate('home')
@@ -26,15 +34,15 @@ export function DetailsMeal() {
           goBack={goBack}
         />
         <ContainerDetails>
-          <Meal>Sanduíche</Meal>
+          <Meal>{meal.item}</Meal>
           <Description>
-            Sanduíche de pão integral com atum e salada de alface e tomate
+            {meal.description}
           </Description>
           <LabelDateTime>Data e hora</LabelDateTime>
-          <DateTime>12/08/2022 às 16:00</DateTime>
+          <DateTime>{meal.date} às {meal.hour}</DateTime>
           <ContainerStateDiet>
             <Dot />
-            <TextStateDiet>dentro da dieta</TextStateDiet>
+            <TextStateDiet>{meal.type === 'within' ? 'dentro da dieta' : 'fora da dieta'}</TextStateDiet>
           </ContainerStateDiet>
           <ContainerButtons>
             <Button 
