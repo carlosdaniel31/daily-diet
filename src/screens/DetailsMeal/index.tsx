@@ -5,6 +5,7 @@ import { Highlight } from "../../components/Highlight";
 import { Container, ContainerButtons, ContainerDetails, ContainerStateDiet, DateTime, Description, Dot,LabelDateTime, Meal, TextStateDiet } from "./styles";
 import { useState } from "react";
 import { MealDTO } from "../../dtos/MealDTO";
+import { mealRemove } from "../../storage/meal/mealRemove";
 
 type RouteParams = {
   meal: MealDTO
@@ -25,6 +26,15 @@ export function DetailsMeal() {
   function handleEditMeal(){
     navigation.navigate('edit_meal')
   }
+
+  async function handleMealRemove(meal: MealDTO){
+      try {
+        await mealRemove(meal) 
+        navigation.navigate('home')
+      } catch (error) {
+        throw error
+      }
+    }
   
   return (
     <>
@@ -64,6 +74,7 @@ export function DetailsMeal() {
       <DeleteMealCard 
         isActive={isActive}
         setIsActive={setIsActive}
+        onRemove={()=>handleMealRemove(meal)}
       />
     </>
   );

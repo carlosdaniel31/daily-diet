@@ -4,9 +4,10 @@ import { Container, ContainerButtons, ContainerFade, Message } from "./styles";
 type Props = {
   isActive: boolean
   setIsActive: (setIsActive: boolean)=>void
+  onRemove: ()=>void
 }
 
-export function DeleteMealCard({isActive=false, setIsActive}: Props){
+export function DeleteMealCard({isActive=false, setIsActive, onRemove}: Props){
   return (
     <>
       {
@@ -22,6 +23,7 @@ export function DeleteMealCard({isActive=false, setIsActive}: Props){
               />
               <Button 
                 title="Sim, excluir"
+                onPress={onRemove}
               />
             </ContainerButtons>
           </Container>
