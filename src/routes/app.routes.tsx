@@ -5,7 +5,6 @@ import { NewMeal } from '../screens/NewMeal'
 import { FeedbackWithinDiet } from '../screens/FeedbackWithinDiet'
 import { FeedbackOffDiet } from '../screens/FeedbackOffDiet'
 import { DetailsMeal } from '../screens/DetailsMeal'
-import { EditMeal } from '../screens/EditMeal'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -31,10 +30,6 @@ export function AppRoutes(){
       <Screen 
         name='feedback_off_diet'
         component={FeedbackOffDiet}
-      />
-      <Screen 
-        name='edit_meal'
-        component={EditMeal}
       />
       <Screen 
         name='details_meal'

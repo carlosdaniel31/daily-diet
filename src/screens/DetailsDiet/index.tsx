@@ -44,10 +44,6 @@ export function DetailsDiet(){
       <ContainerInfo>
         <Title>Estatísticas gerais</Title>
         <ContainerInfoDiet 
-          value={22}
-          info="melhor sequência de pratos dentro da dieta"
-        />
-        <ContainerInfoDiet 
           value={meals?.length}
           info="refeições registradas"
         />

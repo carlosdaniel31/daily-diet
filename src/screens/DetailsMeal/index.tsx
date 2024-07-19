@@ -2,10 +2,11 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Button } from "../../components/Button";
 import { DeleteMealCard } from "../../components/DeleteMealCard";
 import { Highlight } from "../../components/Highlight";
-import { Container, ContainerButtons, ContainerDetails, ContainerStateDiet, DateTime, Description, Dot,LabelDateTime, Meal, TextStateDiet } from "./styles";
+import { Container, ContainerButtons, ContainerDetails, ContainerStateDiet, DateTime, Description, Status,LabelDateTime, Meal, TextStateDiet } from "./styles";
 import { useState } from "react";
 import { MealDTO } from "../../dtos/MealDTO";
 import { mealRemove } from "../../storage/meal/mealRemove";
+import { format } from "date-fns";
 
 type RouteParams = {
   meal: MealDTO
@@ -21,10 +22,6 @@ export function DetailsMeal() {
 
   function goBack(){
     navigation.navigate('home')
-  }
-
-  function handleEditMeal(){
-    navigation.navigate('edit_meal')
   }
 
   async function handleMealRemove(meal: MealDTO){
@@ -49,21 +46,17 @@ export function DetailsMeal() {
             {meal.description}
           </Description>
           <LabelDateTime>Data e hora</LabelDateTime>
-          <DateTime>{meal.date} às {meal.hour}</DateTime>
+          <DateTime>{format(meal.createdAd, `dd/MM/yy 'as' HH:mm`)}</DateTime>
           <ContainerStateDiet>
-            <Dot />
+            <Status 
+              type={meal.type === 'within' ? 'within' : 'outside'}
+            />
             <TextStateDiet>{meal.type === 'within' ? 'dentro da dieta' : 'fora da dieta'}</TextStateDiet>
           </ContainerStateDiet>
           <ContainerButtons>
-            <Button 
-              title="Editar refeição" 
-              icon="border-color" 
-              hasIcon 
-              onPress={handleEditMeal}
-            />
             <Button
               title="Excluir refeição"
-              icon="delete"
+              icon="trash-outline"
               hasIcon
               type="SECONDARY"
               onPress={()=> setIsActive(true)}

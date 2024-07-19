@@ -1,10 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./app.routes";
+import { AuthRoutes } from "./auth.routes"
+import { getUser } from "../storage/user/getUser";
 
-export function Routes(){
+export async function Routes(){
+  const user = await getUser()
+
   return (
     <NavigationContainer>
-      <AppRoutes />
+      {user ?<AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   )
 }

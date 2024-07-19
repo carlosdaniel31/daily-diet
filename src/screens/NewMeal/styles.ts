@@ -37,15 +37,6 @@ export const ContainerButtonTypeDiet = styled.View`
   flex-direction: row;
   gap: 8px;
 `
-export const ContainerButtonDateHour = styled(TouchableOpacity)`
-  flex: 1;
-  min-height: 56px;
-  max-height: 56px;
-  background: transparent;
-  border: 1px solid ${({theme})=> theme.COLORS.GRAY_500};
-  border-radius: 6px;
-  padding: 14px;
-  `
 export const Text = styled.Text`
   color: ${({theme})=> theme.COLORS.GRAY_900};
   font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};

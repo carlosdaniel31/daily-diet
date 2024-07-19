@@ -5,7 +5,11 @@ import { MealDTO } from "../../dtos/MealDTO";
 export async function mealsGetAll(){
   try {
     const storage = await AsyncStorage.getItem(MEALS_COLLECTION)
-    const meals: MealDTO[] = storage ? JSON.parse(storage) : []
+    let meals: MealDTO[] = storage ? JSON.parse(storage) : []
+    meals = meals.map(meal =>({
+      ...meal,
+      createdAd: new Date(meal.createdAd)
+    }))
     return meals
   } catch (error) {
     throw error

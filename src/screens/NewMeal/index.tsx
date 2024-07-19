@@ -1,9 +1,7 @@
 import { useState } from "react";
 import * as zod from 'zod'
 import { format } from 'date-fns'
-import { v4 as uuidv4 } from 'uuid'
-import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
-import { Box, Container, ContainerButtonTypeDiet, ContainerDateHour, Form, Label } from "./styles";
+import { Box, Container, ContainerButtonTypeDiet, Form, Label } from "./styles";
 import { Button } from "../../components/Button";
 import { ButtonTypeDiet } from "../../components/ButtonTypeDiet";
 import { Input } from "../../components/Input";
@@ -13,50 +11,19 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { mealCreate } from "../../storage/meal/mealCreate";
 import { Alert } from "react-native";
-import { ButtonDateTimer } from "../../components/ButtonDateTimer";
 
-const newMealSchema = zod.object({
-  // id: zod.string(),
-  date: zod.string().min(1),
-  hour: zod.string().min(1),
+export const newMealSchema = zod.object({
   item: zod.string().min(1, 'A refeição deve ser informada'),
   description: zod.string().min(1, 'Descreva sua refeição'),
-  type: zod.string()
+  type: zod.string(),
+  createdAd: zod.date()
 })
 
 type FormDataProps = zod.infer<typeof newMealSchema>
 
 export function NewMeal(){
   const [buttonSelected, setButtonSelected] = useState('')
-  const [date, setDate] = useState(new Date());
-  const [hour, setHour] = useState(new Date());
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showClock, setShowClock] = useState(false);
-
-  function handleSelectDate(event: DateTimePickerEvent, selectedDate?: Date | undefined){
-    const currentDate = selectedDate || date;
-    setDate(currentDate);
-    const formattedDate = (currentDate.toDateString());
-    setValue('date', formattedDate)
-    setShowCalendar(false)
-  }
-
-  function handleSelectHour(event: DateTimePickerEvent, selectedHour?: Date | undefined){
-    const currentDate = selectedHour || hour
-    setHour(currentDate)
-    const formattedDate = (currentDate.toDateString())
-    setValue('hour', formattedDate)
-    setShowClock(false)
-  }
-
-  function showDatepickerCalendar(){
-    setShowCalendar(true);
-  }
-
-  function showDatepickerClock(){
-    setShowClock(true);
-  }
-
+ 
   const navigation = useNavigation()
 
   function goBack(){
@@ -66,8 +33,7 @@ export function NewMeal(){
   const { control, handleSubmit, setValue, formState: {errors}} = useForm<FormDataProps>({
     resolver: zodResolver(newMealSchema),
     defaultValues: {
-      date: '',
-      hour: '',
+      createdAd: new Date(),
       item: '',
       description: '',
       type: ''
@@ -131,69 +97,6 @@ export function NewMeal(){
             />
           )}
         />
-        <ContainerDateHour>
-          <Box>
-          {showCalendar && (
-          <DateTimePicker
-            value={date}
-            mode={'date'}
-            display="default"
-            onChange={handleSelectDate}
-            maximumDate={new Date()}
-          />
-        )}
-        {showClock && (
-          <DateTimePicker
-            value={hour}
-            mode='time'
-            display="spinner"
-            
-            onChange={handleSelectHour}
-          />
-        )}
-            <Label>Data</Label>
-            <Controller 
-              control={control}
-              name="date"
-              render={()=>(
-                <ButtonDateTimer 
-                  onPress={showDatepickerCalendar}
-                  title={format(date, 'dd.MM.yy')}
-                />
-                // <Button 
-                //   onPress={showDatepicker}
-                //   // title={date.getDate() + '.' + (date.getMonth() + 1) + '.' + (date.getFullYear() % 100)}
-                //   title={format(date, 'dd.MM.yy')}
-                //   type="SECONDARY"
-                // />
-                // <Input 
-                //   onChangeText={onChange}
-                //   value={value}
-                //   errorMessage={errors.date?.message}
-                  
-                // />
-              )}
-            />
-          </Box>
-          <Box>
-            <Label>Hora</Label>
-            <Controller 
-              control={control}
-              name="hour"
-              render={()=>(
-                <ButtonDateTimer 
-                  title={format(hour, 'HH:mm')}
-                  onPress={showDatepickerClock}
-                />
-                // <Input 
-                //   onChangeText={onChange}
-                //   value={value}
-                //   errorMessage={errors.hour?.message}
-                // />
-              )}
-            />
-          </Box>
-        </ContainerDateHour>
         <Label style={{marginBottom: 8}}>Está dentro da dieta?</Label>
         <ContainerButtonTypeDiet>
           <ButtonTypeDiet 

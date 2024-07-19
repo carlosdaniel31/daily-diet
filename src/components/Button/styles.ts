@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { TouchableOpacity } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 export type ButtonTypeStyleProps = 'PRIMARY' | 'SECONDARY'
 
@@ -26,7 +26,7 @@ export const Title = styled.Text<Props>`
   font-size: ${({theme})=> theme.FONT_SIZE.SM}px;
   font-family: ${({theme})=> theme.FONT_FAMILY.BOLD};
 `
-export const Icon = styled(MaterialIcons).attrs<Props>(({theme, type})=>({
+export const Icon = styled(Ionicons).attrs<Props>(({theme, type})=>({
   color: type === "PRIMARY" ? theme.COLORS.WHITE : theme.COLORS.GRAY_800,
   size: 24
 }))``

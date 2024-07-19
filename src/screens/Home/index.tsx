@@ -2,12 +2,14 @@ import { Bar, Container, ContainerItem, ContainerPercentage, CreatedAd, HeaderSe
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { FlatList, SectionList } from "react-native";
+import { format } from "date-fns"
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Platform } from "react-native";
 import { useCallback, useState } from "react";
 import { mealsGetAll } from "../../storage/meal/mealsGetAll";
 import { MealDTO } from "../../dtos/MealDTO";
 import { ListEmpty } from "../../components/ListEmpty";
+import { getUser } from "../../storage/user/getUser";
 
 const DATAL = [
   {
@@ -107,6 +109,7 @@ const DATA = [
 export function Home(){
   const [isLoading, setIsLoading] = useState(false)
   const [meals, setMeals] = useState<MealDTO[]>([])
+  // const [teste, setTeste] = useState('')
 
   const navigation = useNavigation()
   
@@ -126,7 +129,9 @@ export function Home(){
     try {
       setIsLoading(true);
       const data = await mealsGetAll()
+      // const user = await getUser()
       setMeals(data)
+      // setTeste(user)
     } catch (error) {
       throw error
     } finally {
@@ -145,7 +150,7 @@ export function Home(){
         <Icon 
           name="call-made"
         />
-        <Percentage>90,86%</Percentage>
+        <Percentage>45</Percentage>
         <InfoPercentage>das refeições dentro da dieta</InfoPercentage>
       </ContainerPercentage>
       <Title>Refeições</Title>
@@ -178,23 +183,24 @@ export function Home(){
       <FlatList 
         data={meals}
         keyExtractor={item => item.description}
-        renderItem={({item})=> (
+        renderItem={({item})=> {
+          return (
           <ContainerItem onPress={()=>handleDetailsMeal(item)}>
-            <CreatedAd>{item.hour}</CreatedAd>
+            <CreatedAd>{format(item.createdAd, 'HH:mm')}</CreatedAd>
               <Bar>|</Bar>
-              <Item>{item.item}</Item>
+              <Item numberOfLines={1} ellipsizeMode="tail">{item.item}</Item>
               <Type 
                 name='circle'
                 type={item.type}
               />
           </ContainerItem>
-
-        )}
+          )
+        }}
         contentContainerStyle={
           meals.length ? { marginTop: 32, paddingBottom: Platform.OS === 'ios' ? 20 : 80} : {flex: 1}}
         ListEmptyComponent={()=>(
           <ListEmpty 
-            message="Nenhuma refeição adicionada a sua dieta ainda."
+            message="Adicione uma refeição a sua dieta."
           />
         )}
         showsVerticalScrollIndicator={false}

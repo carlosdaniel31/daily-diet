@@ -1,5 +1,10 @@
 import styled from "styled-components/native"
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { TypeStyleIconDietProps } from "../Home/styles"
+
+type Props = {
+  type: TypeStyleIconDietProps
+}
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -51,11 +56,11 @@ export const TextStateDiet = styled.Text`
   font-size: ${({ theme })=> theme.FONT_SIZE.SM}px;
   font-family: ${({theme})=> theme.FONT_FAMILY.REGULAR};
 `
-export const Dot = styled.View`
+export const Status = styled.View<Props>`
   width: 8px;
   height: 8px;
   border-radius: 4px;
-  background: ${({ theme })=> theme.COLORS.GREEN_700};
+  background: ${({ theme, type })=> type === 'within' ? theme.COLORS.GREEN_700 : theme.COLORS.RED_700};
   margin-right: 8px;
 `
 export const ContainerButtons = styled.View`

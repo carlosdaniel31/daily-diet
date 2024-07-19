@@ -48,6 +48,7 @@ export const Title = styled.Text`
 export const ListMeal = styled(ScrollView)`
   flex: 1;
   margin-top: 32px;
+  height: 200px;
 `
 export const ContainerItem = styled(TouchableOpacity)`
   flex: 1;
@@ -73,6 +74,7 @@ export const Item = styled.Text`
   font-size: ${({theme})=> theme.FONT_SIZE.MD}px;
   color: ${({theme})=> theme.COLORS.GRAY_700};
   flex: 1;
+  overflow: hidden;
 `
 export const Type = styled(MaterialIcons).attrs<Props>(({theme, type})=>({
   color: type === 'within' ? theme.COLORS.GREEN_300 : theme.COLORS.RED_300,
